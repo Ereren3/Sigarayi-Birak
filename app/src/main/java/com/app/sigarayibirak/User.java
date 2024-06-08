@@ -3,7 +3,7 @@ package com.app.sigarayibirak;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//Bu sınıfı yaratma amacımız kullanıcının verilerini oluşturduğumuz database'e eklemektir.
+//Bu sınıfı yaratma amacımız kullanıcının verilerini kayıt olurken oluşturduğumuz database'e eklemektir.
 public class User {
 
     private String name, eMail, age, password, date;
