@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "910978536050",
+    "firebase_url": "https://sigarayi-birak-app-default-rtdb.firebaseio.com",
+    "project_id": "sigarayi-birak-app",
+    "storage_bucket": "sigarayi-birak-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910978536050:android:95012143fa7036e9cb68eb",
+        "android_client_info": {
+          "package_name": "com.app.sigarayibirak"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB43arWCwubvVHEJw51EJgsDGMuJsobu_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
