@@ -28,6 +28,7 @@ public class HomeFragment extends Fragment {
     FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference ref;
+    String dayCount;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +53,7 @@ public class HomeFragment extends Fragment {
 
                     DataSnapshot ds = task.getResult();
 
-                    String dayCount = ds.child("dayCount").getValue().toString();
+                    dayCount = ds.child("dayCount").getValue().toString();
                     String date = ds.child("date").getValue().toString();
 
                     binding.dayCount.setText(dayCount);
@@ -64,6 +65,32 @@ public class HomeFragment extends Fragment {
                 else {
 
                 }
+            }
+        });
+
+
+        binding.dayCountBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ref.child(mAuth.getCurrentUser().getUid()).child("dayCount").setValue(String.valueOf((Integer.parseInt(dayCount)+1)));
+                dayCount = String.valueOf(Integer.parseInt(dayCount)+1);
+                binding.dayCount.setText(dayCount);
+
+                binding.savedTimeCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 15 * 5));
+                binding.savedMoneyCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 45));
+                binding.cigaretteCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 15));
+            }
+        });
+
+        binding.resetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ref.child(mAuth.getCurrentUser().getUid()).child("dayCount").setValue("1");
+                dayCount = "1";
+                binding.dayCount.setText(dayCount);
+                binding.savedTimeCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 15 * 5));
+                binding.savedMoneyCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 45));
+                binding.cigaretteCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 15));
             }
         });
 

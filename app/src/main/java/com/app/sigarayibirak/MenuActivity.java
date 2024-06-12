@@ -18,8 +18,6 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import com.app.sigarayibirak.databinding.ActivityMainBinding;
 import com.app.sigarayibirak.databinding.ActivityMenuBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.internal.NavigationMenu;

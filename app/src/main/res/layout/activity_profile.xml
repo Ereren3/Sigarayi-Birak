@@ -169,7 +169,7 @@
 
                 <TextView
                     android:id="@+id/profileEmail"
-                    android:layout_width="42dp"
+                    android:layout_width="73dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="  Mail"
@@ -178,10 +178,10 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="205dp"
+                    android:id="@+id/profileEmailArea"
+                    android:layout_width="218dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/profileEmailArea"
                     android:text=""
                     android:textAlignment="viewStart"
                     android:textColor="@color/black"

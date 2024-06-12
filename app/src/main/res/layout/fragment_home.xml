@@ -9,8 +9,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="322dp"
-        android:layout_height="334dp"
+        android:layout_width="318dp"
+        android:layout_height="353dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/card_view"
         app:cardBackgroundColor="@color/white"
@@ -21,8 +21,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="335dp">
+            android:layout_width="323dp"
+            android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.558" />
+                app:layout_constraintVertical_bias="0.73" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
@@ -44,21 +44,22 @@
                 android:background="@color/btn_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.675" />
+                app:layout_constraintVertical_bias="0.846" />
 
             <TextView
                 android:id="@+id/dayCountTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="116dp"
                 android:text="Gün sayisi"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,20 +71,20 @@
                 android:background="@color/btn_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.441" />
+                app:layout_constraintVertical_bias="0.625" />
 
             <TextView
                 android:id="@+id/dayCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="12dp"
                 android:text="sayi"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dayCountTitle" />
 
@@ -91,21 +92,21 @@
                 android:id="@+id/savedMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:text="Tasarruf edilen para"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.523" />
+                app:layout_constraintVertical_bias="0.694" />
 
             <TextView
                 android:id="@+id/savedMoneyCount"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="164dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginTop="232dp"
+                android:layout_marginEnd="16dp"
                 android:text="para sayi"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/black"
@@ -117,8 +118,8 @@
                 android:id="@+id/cigarette"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:text="İçilmeyen sigara"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -129,8 +130,8 @@
                 android:id="@+id/cigaretteCount"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
                 android:text="sigara sayi"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/black"
@@ -142,8 +143,8 @@
                 android:id="@+id/savedTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="128dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="196dp"
                 android:text="Tasarruf edilen dakika"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -154,59 +155,50 @@
                 android:id="@+id/savedTimeCount"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="128dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginTop="196dp"
+                android:layout_marginEnd="16dp"
                 android:text="zaman sayisi"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="178dp"
+                android:layout_height="121dp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/baseline_list_alt_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="64dp"
+        android:id="@+id/dayCountBtn"
+        android:layout_width="269dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="104dp"
         android:backgroundTint="@color/btn_color"
-        android:text="Arttır"
+        android:text="Gün sayısını arttır"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/resetBtn"
+        android:layout_width="269dp"
+        android:layout_height="45dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="64dp"
         android:backgroundTint="@color/btn_color"
-        android:text="Sıfırla"
+        android:text="Bütün ilerlemeyi sıfırla"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="40dp"
-        android:text="Geçen gün sayısını"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="8dp"
-        android:text="Bütün yapılan ilerlemeyi"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dayCountBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
