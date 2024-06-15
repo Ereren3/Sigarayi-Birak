@@ -18,23 +18,30 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class HomeFragment extends Fragment {
-
     FragmentHomeBinding binding;
     FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference ref;
-    String dayCount;
+    Long distance;
+    Date nowDate;
+    DateFormat sdf;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
+        //Binding işlemi yapıyoruz.
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
         //Database bağlantısı yapıp kullanacağımız database'in referansını veriyoruz.
@@ -49,48 +56,60 @@ public class HomeFragment extends Fragment {
         ref.child(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (task.isSuccessful()) {
+                //Databaseden verilerin gelmesi için gerekli kodumuz.
+                DataSnapshot ds = task.getResult();
+                String userDateString = ds.child("date").getValue().toString();
 
-                    DataSnapshot ds = task.getResult();
-
-                    dayCount = ds.child("dayCount").getValue().toString();
-                    String date = ds.child("date").getValue().toString();
-
-                    binding.dayCount.setText(dayCount);
-                    binding.savedTimeCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 15 * 5));
-                    binding.savedMoneyCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 45));
-                    binding.cigaretteCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 15));
-
+                //Kullanıcının bırakma tarihi ile şimdiki tarih arasında geçen farkı almak için oluşturduğumuz kod bloğu
+                nowDate = new Date();
+                Date userDate;
+                sdf = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    userDate = sdf.parse(userDateString);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
                 }
-                else {
+                //Database'den gelen tarih ile şu an olunan tarihin farkını bulmak için kullandığımız kod.
+                distance = (nowDate.getTime()-userDate.getTime()) / (1000 * 60 * 60 * 24) + 1;
 
-                }
+                binding.dayCount.setText(String.valueOf(distance));
+                binding.savedTimeCount.setText(String.valueOf((distance) * 15 * 5));
+                binding.savedMoneyCount.setText(String.valueOf((distance) * 45));
+                binding.cigaretteCount.setText(String.valueOf((distance) * 15));
             }
         });
 
+
+        /*
+        //Bu kod bloğu farklı bir amaçla test için yazılmıştır, işlevi uygulama bitince sona ermiştir.
 
         binding.dayCountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ref.child(mAuth.getCurrentUser().getUid()).child("dayCount").setValue(String.valueOf((Integer.parseInt(dayCount)+1)));
-                dayCount = String.valueOf(Integer.parseInt(dayCount)+1);
-                binding.dayCount.setText(dayCount);
+                ref.child(mAuth.getCurrentUser().getUid()).child("dayCount").setValue(String.valueOf((distance + 1)));
+                distance = distance +1;
+                binding.dayCount.setText(String.valueOf(distance));
 
-                binding.savedTimeCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 15 * 5));
-                binding.savedMoneyCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 45));
-                binding.cigaretteCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 15));
+                binding.savedTimeCount.setText(String.valueOf((distance + 1) * 15 * 5));
+                binding.savedMoneyCount.setText(String.valueOf((distance + 1) * 45));
+                binding.cigaretteCount.setText(String.valueOf((distance + 1) * 15));
             }
         });
+         */
 
+        //Kullanıcının ilerlemeyi sıfırlaması için oluşturduğumuz buton
         binding.resetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //Gün sayısı ve tarih bilgilerimizi sıfırlayıp database'imizi güncelliyoruz.
                 ref.child(mAuth.getCurrentUser().getUid()).child("dayCount").setValue("1");
-                dayCount = "1";
-                binding.dayCount.setText(dayCount);
-                binding.savedTimeCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 15 * 5));
-                binding.savedMoneyCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 45));
-                binding.cigaretteCount.setText(String.valueOf((Integer.parseInt(dayCount)+1) * 15));
+                ref.child(mAuth.getCurrentUser().getUid()).child("date").setValue(sdf.format(nowDate).toString());
+
+                binding.dayCount.setText(String.valueOf(1));
+                binding.savedTimeCount.setText(String.valueOf(15 * 5));
+                binding.savedMoneyCount.setText(String.valueOf(45));
+                binding.cigaretteCount.setText(String.valueOf(15));
             }
         });
 

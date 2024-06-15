@@ -15,16 +15,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.app.sigarayibirak.databinding.ActivityLoginBinding;
+import com.app.sigarayibirak.databinding.ActivityMenuBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
-
-    EditText editTextEmail, editTextPassword;
-    Button register, login;
     FirebaseAuth mAuth;
+    ActivityLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +37,12 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        register = findViewById(R.id.loginRegisterBtn);
-        login = findViewById(R.id.loginBtnLogin);
-        editTextEmail = findViewById(R.id.loginEmail);
-        editTextPassword = findViewById(R.id.loginPassword);
+        //Binding işlemi yapıyoruz.
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         //Kayıt sayfasına gitmek için kullandığımız listener.
-        register.setOnClickListener(new View.OnClickListener() {
+        binding.loginRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent register = new Intent( LoginActivity.this, RegisterActivity.class);
@@ -53,14 +52,14 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         //Login işlemi gerçekleştirmek için kullandığımız listener.
-        login.setOnClickListener(new View.OnClickListener() {
+        binding.loginBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 //Kullanıcının girdiği verileri string tipine dönüştürüp oluşturduğumuz referanslara atıyoruz.
                 String email, password;
-                email = editTextEmail.getText().toString();
-                password = editTextPassword.getText().toString();
+                email = binding.loginEmail.getText().toString();
+                password = binding.loginPassword.getText().toString();
 
                 //Verilerin girildiğinden emin olmak için kontrol ediyoruz.
                 if(TextUtils.isEmpty(email)){
@@ -103,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    //Kullanıcının daha önceden giriş yapıp yapmadığını kontrol eden metot.
     @Override
     protected void onStart() {
         mAuth = FirebaseAuth.getInstance();

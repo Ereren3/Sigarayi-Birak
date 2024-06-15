@@ -15,6 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.app.sigarayibirak.databinding.ActivityProfileBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,12 +27,10 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class ProfileActivity extends AppCompatActivity {
-
-    TextView textViewUserName, textViewName, textViewAge, textViewMail;
-    ImageButton btn;
     FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference ref;
+    ActivityProfileBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,31 +43,33 @@ public class ProfileActivity extends AppCompatActivity {
             return insets;
         });
 
-        textViewUserName = findViewById(R.id.profileTextUserName);
-        textViewName = findViewById(R.id.profileNameArea);
-        textViewAge = findViewById(R.id.profileAgeArea);
-        textViewMail = findViewById(R.id.profileEmailArea);
-        btn = findViewById(R.id.profileBackButton);
+        //Binding işlemi yapıyoruz.
+        binding = ActivityProfileBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
+        //Database bağlantısını çağırıyoruz
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("Users");
         mAuth = FirebaseAuth.getInstance();
 
+        //Database'imizden mevcut kullanıcıya ait verilerimizi çekiyoruz.
         ref.child(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (task.isSuccessful()) {
 
+                    //Databaseden verilerin gelmesi için gerekli kodumuz.
                     DataSnapshot ds = task.getResult();
 
+                    //Gelen verileri değişkenlere atıyoruz.
                     String mail = ds.child("eMail").getValue().toString();
                     String name = ds.child("name").getValue().toString();
                     String age = ds.child("age").getValue().toString();
 
-                    textViewName.setText(name);
-                    textViewMail.setText(mail);
-                    textViewAge.setText(age);
-                    textViewUserName.setText("Merhaba, " + name.toUpperCase());
+                    binding.profileNameArea.setText(name);
+                    binding.profileEmailArea.setText(mail);
+                    binding.profileAgeArea.setText(age);
+                    binding.profileTextUserName.setText("Merhaba, " + name.toUpperCase());
                 }
                 else {
                     Toast.makeText(ProfileActivity.this,"Bilgiler yüklenirken hata meydana geldi.",Toast.LENGTH_LONG)
@@ -77,7 +78,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        //Geri gelme butonu için yazdığımız listener
+        binding.profileBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent go = new Intent(ProfileActivity.this, MenuActivity.class);

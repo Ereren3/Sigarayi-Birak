@@ -15,6 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.app.sigarayibirak.databinding.ActivityRegisterBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Firebase;
@@ -34,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference ref;
-
+    ActivityRegisterBinding binding;
 
 
     @Override
@@ -48,14 +49,12 @@ public class RegisterActivity extends AppCompatActivity {
             return insets;
         });
 
-        editTextEmail = findViewById(R.id.registerEmail);
-        editTextPassword = findViewById(R.id.registerPassword);
-        editTextAge = findViewById(R.id.registerAge);
-        editTextUserName = findViewById(R.id.registerUserName);
-        register = findViewById(R.id.loginBtnRegister);
+        //Binding işlemi yapıyoruz.
+        binding = ActivityRegisterBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         //Kayıt sayfamızda kayıt ol tuşuna basmamızı bekleyen listener.
-        register.setOnClickListener(new View.OnClickListener() {
+        binding.loginBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -66,10 +65,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                 //Kullanıcının girdiği verileri string tipine dönüştürüyoruz.
                 String email, password, userName, age;
-                email = editTextEmail.getText().toString();
-                password = editTextPassword.getText().toString();
-                userName = editTextUserName.getText().toString();
-                age = editTextAge.getText().toString();
+                email = binding.registerEmail.getText().toString();
+                password = binding.registerPassword.getText().toString();
+                userName = binding.registerUserName.getText().toString();
+                age = binding.registerAge.getText().toString();
 
                 //Girilen verierin boş olup olmadığını kontrol ediyoruz.
                 if (TextUtils.isEmpty(email) || !email.contains("mail")){

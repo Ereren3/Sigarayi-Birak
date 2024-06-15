@@ -2,11 +2,15 @@ package com.app.sigarayibirak;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Binder;
+import android.os.Build;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.Manifest;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -25,9 +29,8 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MenuActivity extends AppCompatActivity {
-    ActivityMenuBinding binding;
-    FloatingActionButton profileBtn;
     FirebaseAuth mAuth;
+    ActivityMenuBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +38,11 @@ public class MenuActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_menu);
 
+        //Binding işlemi yapıyoruz
         binding = ActivityMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //Fragment yerleştiriyoruz.
         replaceFragment(new HomeFragment());
         binding.bottomNavigatonView.setBackground(null);
 
@@ -70,6 +75,10 @@ public class MenuActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 99);
+        }
 
     }
 

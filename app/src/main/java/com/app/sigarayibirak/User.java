@@ -1,5 +1,6 @@
 package com.app.sigarayibirak;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -67,7 +68,7 @@ public class User {
     }
     public void setDate(){
         Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         this.date = dateFormat.format(date);
     }
 }
